@@ -49,7 +49,7 @@ class CategoryController extends Controller
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=false),
      *             @OA\Property(property="message", type="string", example="Internal server error"),
-     *             @OA\Property(property="data", type="null"),
+     *             @OA\Property(property="data", type="string", nullable=true, example=null),
      *         ),
      *     ),
      * )
@@ -98,7 +98,15 @@ class CategoryController extends Controller
      *              )
      *          )
      *     ),
-     *     @OA\Response(response=404, description="Category not found")
+     *     @OA\Response(
+     *          response="404",
+     *          description="Category not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Category not found"),
+     *              @OA\Property(property="data", type="string", nullable=true, example=null),
+     *          )
+     *      ),
      * )
      */
 
@@ -142,7 +150,16 @@ class CategoryController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Category")
      *         )
      *     ),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *      @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *              @OA\Property(property="data", type="object", nullable=true),
+     *              @OA\Property(property="errors", type="object", nullable=true),
+     *          )
+     *      )
      * )
      */
 
@@ -181,15 +198,48 @@ class CategoryController extends Controller
      *         required=true,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CategoryRequest")
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Category updated",
-     *         @OA\JsonContent(ref="#/components/schemas/Category")
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Category updated"),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 nullable=true,
+     *                 ref="#/components/schemas/Category"
+     *             )
+     *         )
      *     ),
-     *     @OA\Response(response=404, description="Category not found"),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *     @OA\Response(
+     *         response=404,
+     *         description="Category not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Category not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
+
 
     public function update(CategoryRequest $request, $id)
     {

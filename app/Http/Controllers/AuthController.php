@@ -63,7 +63,7 @@ class AuthController extends Controller
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=true),
      *             @OA\Property(property="message", type="string", example="Login Unsuccessful"),
-     *             @OA\Property(property="data", type="null"),
+     *             @OA\Property(property="data", type="string", nullable=true, example=null),
      *         )
      *     ),
      * )
@@ -152,7 +152,7 @@ class AuthController extends Controller
      *     @OA\JsonContent(
      *         @OA\Property(property="success", type="boolean", example=false),
      *         @OA\Property(property="message", type="string", example="Registration unsuccessful"),
-     *         @OA\Property(property="data", type="null"),
+     *         @OA\Property(property="data", type="string", nullable=true, example=null),
      *         @OA\Property(
      *             property="errors",
      *             type="object",

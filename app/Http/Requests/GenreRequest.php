@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
  *     required={"name", "description", "category_id"},
  *     @OA\Property(property="name", type="string", example="Genre Name"),
  *     @OA\Property(property="description", type="string", example="Genre Description"),
- *     @OA\Property(property="category_id", type="object", ref="#/components/schemas/Category"),
+ *     @OA\Property(property="category_id", type="integer", example=1),
  * )
  */
 

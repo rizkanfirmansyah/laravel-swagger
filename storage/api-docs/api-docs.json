@@ -82,7 +82,9 @@
                                             "example": "Login Unsuccessful"
                                         },
                                         "data": {
-                                            "type": "null"
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
                                         }
                                     },
                                     "type": "object"
@@ -164,7 +166,9 @@
                                             "example": "Registration unsuccessful"
                                         },
                                         "data": {
-                                            "type": "null"
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
                                         },
                                         "errors": {
                                             "properties": {
@@ -577,7 +581,9 @@
                                             "example": "Internal server error"
                                         },
                                         "data": {
-                                            "type": "null"
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
                                         }
                                     },
                                     "type": "object"
@@ -629,7 +635,32 @@
                         }
                     },
                     "422": {
-                        "description": "Unprocessable Entity"
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unprocessable Entity"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "nullable": true
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 },
                 "security": [
@@ -683,7 +714,29 @@
                         }
                     },
                     "404": {
-                        "description": "Category not found"
+                        "description": "Category not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Category not found"
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1216,7 +1269,8 @@
                         "example": "Genre Description"
                     },
                     "category_id": {
-                        "$ref": "#/components/schemas/Category"
+                        "type": "integer",
+                        "example": 1
                     }
                 },
                 "type": "object"
