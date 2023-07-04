@@ -94,7 +94,7 @@ class CategoryController extends Controller
      *          @OA\Property(property="message", type="string", example="Category retrieved successfully"),
      *          @OA\Property(
      *              property="data",
-     *              ref="#/components/sschemas/Category"
+     *              ref="#/components/schemas/Category"
      *              )
      *          )
      *     ),
@@ -127,6 +127,7 @@ class CategoryController extends Controller
      *     path="/api/categories",
      *     summary="Create a new category",
      *     tags={"Categories"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\RequestBody(
      *         required=true,
      *         description="Category data",
@@ -172,6 +173,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{id}",
      *     summary="Update a category",
      *     tags={"Categories"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -217,6 +219,7 @@ class CategoryController extends Controller
      *     path="/api/categories/{id}",
      *     summary="Delete a category",
      *     tags={"Categories"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

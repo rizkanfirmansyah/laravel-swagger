@@ -11,9 +11,13 @@ use Illuminate\Validation\ValidationException;
 /**
  * @OA\Schema(
  *     schema="User",
- *     @OA\Property(property="id", type="integer", example=1),
- *     @OA\Property(property="name", type="string", example="John Doe"),
- *     @OA\Property(property="email", type="string", example="john@example.com"),
+ *     @OA\Property(property="id", type="integer", example=2),
+ *     @OA\Property(property="name", type="string", example="rizkan"),
+ *     @OA\Property(property="email", type="string", example="tester@gmail.com"),
+ *     @OA\Property(property="email_verified_at", type="string", format="date-time", nullable=true),
+ *     @OA\Property(property="created_at", type="string", format="date-time", example="2023-07-04T05:09:19.000000Z"),
+ *     @OA\Property(property="updated_at", type="string", format="date-time", example="2023-07-04T05:09:19.000000Z"),
+ *     @OA\Property(property="token", type="string", example="4|iiKlCYbsKJWp1m7m6o5NqQOuGUdUk3u3PMtEKTI1"),
  * )
  */
 class AuthController extends Controller
@@ -83,7 +87,6 @@ class AuthController extends Controller
                     'success' => true,
                     'message' => 'Login successful',
                     'data' => $user,
-                    'token' => $token,
                 ]);
             } else {
                 return response()->json([
@@ -137,16 +140,13 @@ class AuthController extends Controller
      *     @OA\Response(
      *         response="default",
      *         description="Successful Register",
-     *         @OA\MediaType(
-     *              mediaType="application/json",
-     *              example={
-     *                  "success"=True,
-     *                  "message"="Register Successfull",
-     *                  "data"={}
-     *              }
-     *          )
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Register Successful"),
+     *             @OA\Property(property="data", ref="#/components/schemas/User"),
+     *         )
      *     ),
-     *      * @OA\Response(
+     *     @OA\Response(
      *     response="400",
      *     description="Bad Request",
      *     @OA\JsonContent(

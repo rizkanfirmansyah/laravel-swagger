@@ -14,8 +14,13 @@ use Illuminate\Http\Request;
  *     @OA\Property(property="id", type="integer", example=1),
  *     @OA\Property(property="name", type="string", example="Genre Name"),
  *     @OA\Property(property="description", type="string", example="Genre Description"),
- *     @OA\Property(property="category_id", type="integer", example=1)
+ *     @OA\Property(property="category_id", type="integer", example=1),
+ *     @OA\Property(
+ *         property="category",
+ *         ref="#/components/schemas/Category"
+ *     )
  * )
+ *
  */
 
 class GenreController extends Controller
@@ -76,6 +81,7 @@ class GenreController extends Controller
      *     path="/api/genres",
      *     summary="Create a new genre",
      *     tags={"Genres"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/GenreRequest")
@@ -167,6 +173,7 @@ class GenreController extends Controller
      *     path="/api/genres/{id}",
      *     summary="Update an existing genre",
      *     tags={"Genres"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -222,6 +229,7 @@ class GenreController extends Controller
      *     path="/api/genres/{id}",
      *     summary="Delete a genre",
      *     tags={"Genres"},
+     *     security={{"bearerAuth": {}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",

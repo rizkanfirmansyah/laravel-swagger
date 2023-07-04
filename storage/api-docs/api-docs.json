@@ -1,16 +1,16 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Your API Title",
-        "description": "Your API description",
+        "title": "REST API Book Catalog",
+        "description": "This Open API for Book Catalog provides a comprehensive set of functionalities to manage book data. You can utilize this API to perform various operations such as retrieving book information, adding new book entries, searching for specific books, and more. The API offers a convenient way to interact with the book catalog, enabling seamless integration with your applications or systems.To access the book catalog data, you can make HTTP requests to the designated endpoints provided by the API. Here are some of the key features and endpoints offered by this API:\n * 1. Get Book Data: You can retrieve book information by making a GET request to the `/books` endpoint. This endpoint allows you to fetch the entire book catalog or filter books based on specific criteria such as title, author, genre, or publication year.\n * 2. Add New Book: To add a new book entry to the catalog, you can send a POST request to the `/books` endpoint. Include the necessary details of the book, such as title, author, genre, publication year, and any additional information required.\n * 3. Update Book Details: If you need to modify the information of an existing book, you can make a PUT or PATCH request to the `/books/{id}` endpoint, where `{id}` represents the unique identifier of the book. Provide the updated details for the book in the request payload.\n * 4. Delete Book: To remove a book from the catalog, send a DELETE request to the `/books/{id}` endpoint, where `{id}` corresponds to the identifier of the book you wish to delete.",
         "contact": {
-            "email": "your@email.com"
+            "email": "riezkanaprianda@gmail.com"
         },
         "license": {
-            "name": "Your API License",
-            "url": "http://your-api-license-url.com"
+            "name": "My Open API License",
+            "url": "http://rizkandev.com"
         },
-        "version": "1.0.0"
+        "version": "1.0.9"
     },
     "paths": {
         "/api/login": {
@@ -130,10 +130,21 @@
                         "description": "Successful Register",
                         "content": {
                             "application/json": {
-                                "example": {
-                                    "success": true,
-                                    "message": "Register Successfull",
-                                    "data": []
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Register Successful"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -620,7 +631,12 @@
                     "422": {
                         "description": "Unprocessable Entity"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/categories/{id}": {
@@ -706,7 +722,12 @@
                     "422": {
                         "description": "Unprocessable Entity"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -733,7 +754,12 @@
                     "404": {
                         "description": "Category not found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/genres": {
@@ -817,7 +843,12 @@
                     "422": {
                         "description": "Unprocessable Entity"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         },
         "/api/genres/{id}": {
@@ -928,7 +959,12 @@
                     "422": {
                         "description": "Unprocessable Entity"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             },
             "delete": {
                 "tags": [
@@ -973,7 +1009,12 @@
                     "404": {
                         "description": "Not Found"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -983,15 +1024,34 @@
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "example": 1
+                        "example": 2
                     },
                     "name": {
                         "type": "string",
-                        "example": "John Doe"
+                        "example": "rizkan"
                     },
                     "email": {
                         "type": "string",
-                        "example": "john@example.com"
+                        "example": "tester@gmail.com"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-04T05:09:19.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-04T05:09:19.000000Z"
+                    },
+                    "token": {
+                        "type": "string",
+                        "example": "4|iiKlCYbsKJWp1m7m6o5NqQOuGUdUk3u3PMtEKTI1"
                     }
                 },
                 "type": "object"
@@ -1072,6 +1132,9 @@
                     "category_id": {
                         "type": "integer",
                         "example": 1
+                    },
+                    "category": {
+                        "$ref": "#/components/schemas/Category"
                     }
                 },
                 "type": "object"
