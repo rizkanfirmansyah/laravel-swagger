@@ -1,0 +1,26 @@
+
+- app
+    - Exceptions
+        - Handler.php
+    - Http
+        - Controllers
+            - api
+                - BookController.php
+                - CategoryController.php
+                - GenreController.php
+            - AuthController.php
+        - Request
+            - BookRequest.php
+            - CategoryRequest.php
+            - GenreRequest.php
+    - Models
+        - Book.php
+        - Category.php
+        - Genre.php
+        - User.php
+- routes
+    - api.php
+- database
+    - migrations
+        - ...migratio_file
+- .env
