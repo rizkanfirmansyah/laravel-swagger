@@ -14,10 +14,10 @@ use Illuminate\Http\Request;
  *     @OA\Property(property="id", type="integer", example=1),
  *     @OA\Property(property="name", type="string", example="Genre Name"),
  *     @OA\Property(property="description", type="string", example="Genre Description"),
- *     @OA\Property(property="category_id", type="integer", example=1),
+ *     @OA\Property(property="Genre_id", type="integer", example=1),
  *     @OA\Property(
- *         property="category",
- *         ref="#/components/schemas/Category"
+ *         property="Genre",
+ *         ref="#/components/schemas/Genre"
  *     )
  * )
  *
@@ -96,7 +96,7 @@ class GenreController extends Controller
      *         @OA\JsonContent(ref="#/components/schemas/GenreRequest")
      *     ),
      *     @OA\Response(
-     *         response=201,
+     *         response=200,
      *         description="Genre created successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=true),
@@ -104,7 +104,16 @@ class GenreController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Genre")
      *         )
      *     ),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *       @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *              @OA\Property(property="data", type="object", nullable=true),
+     *              @OA\Property(property="errors", type="object", nullable=true),
+     *          )
+     *      )
      * )
      */
     public function store(GenreRequest $request)
@@ -211,8 +220,26 @@ class GenreController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Genre")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Not Found"),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *     @OA\Response(
+     *         response=404,
+     *         description="Genre not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Genre not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
     public function update(GenreRequest $request, $id)
@@ -259,10 +286,30 @@ class GenreController extends Controller
      *         description="Genre deleted successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=true),
-     *             @OA\Property(property="message", type="string", example="Genre deleted successfully")
+     *             @OA\Property(property="message", type="string", example="Genre deleted successfully"),
+     *             @OA\Property(property="data", type="object", nullable=true),
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Not Found")
+     *     @OA\Response(
+     *         response=404,
+     *         description="Genre not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Genre not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Internal server error"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
     public function destroy($id)

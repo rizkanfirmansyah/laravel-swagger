@@ -55,6 +55,15 @@ class BookController extends Controller
      *                 @OA\Items(ref="#/components/schemas/Book")
      *             ),
      *         ),
+     *      @OA\Response(
+     *         response=500,
+     *         description="Server error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Internal server error"),
+     *             @OA\Property(property="data", type="string", nullable=true, example=null),
+     *         ),
+     *     ),
      *     )
      * )
      */

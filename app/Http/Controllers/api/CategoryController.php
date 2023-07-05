@@ -142,7 +142,7 @@ class CategoryController extends Controller
      *         @OA\JsonContent(ref="#/components/schemas/CategoryRequest")
      *     ),
      *     @OA\Response(
-     *         response="201",
+     *         response="200",
      *         description="Category created successfully",
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=true),
