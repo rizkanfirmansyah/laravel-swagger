@@ -16,8 +16,8 @@ use Illuminate\Http\Request;
  *     @OA\Property(property="description", type="string", example="Genre Description"),
  *     @OA\Property(property="Genre_id", type="integer", example=1),
  *     @OA\Property(
- *         property="Genre",
- *         ref="#/components/schemas/Genre"
+ *         property="Category",
+ *         ref="#/components/schemas/Category"
  *     )
  * )
  *

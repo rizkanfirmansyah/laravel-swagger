@@ -1764,8 +1764,8 @@
                         "type": "integer",
                         "example": 1
                     },
-                    "Genre": {
-                        "$ref": "#/components/schemas/Genre"
+                    "Category": {
+                        "$ref": "#/components/schemas/Category"
                     }
                 },
                 "type": "object"

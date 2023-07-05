@@ -11,10 +11,15 @@ class Genre extends Model
 
     protected $table = 'genres';
 
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'category_id'];
 
     public function books()
     {
         return $this->hasMany(Book::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
