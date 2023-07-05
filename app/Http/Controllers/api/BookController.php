@@ -242,8 +242,26 @@ class BookController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Book")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Book not found"),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *     @OA\Response(
+     *         response=404,
+     *         description="Book not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Book not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
     public function update(BookRequest $request, $id)
@@ -317,12 +335,12 @@ class BookController extends Controller
      *         )
      *     ),
      *     @OA\Response(
-     *         response=422,
-     *         description="Unprocessable Entity",
+     *         response=500,
+     *         description="Internal server error",
      *         @OA\JsonContent(
      *             type="object",
      *             @OA\Property(property="success", type="boolean", example=false),
-     *             @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *             @OA\Property(property="message", type="string", example="Internal server error"),
      *             @OA\Property(property="errors", type="object", nullable=true),
      *         )
      *     )
