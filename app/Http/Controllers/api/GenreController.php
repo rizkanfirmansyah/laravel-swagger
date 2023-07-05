@@ -152,7 +152,15 @@ class GenreController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Genre")
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Not Found")
+     *     @OA\Response(
+     *          response="404",
+     *          description="Genre not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Genre not found"),
+     *              @OA\Property(property="data", type="string", nullable=true, example=null),
+     *          )
+     *      ),
      * )
      */
     public function show($id)
