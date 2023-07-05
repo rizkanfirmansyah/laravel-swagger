@@ -312,7 +312,7 @@ class BookController extends Controller
      *         @OA\JsonContent(
      *             @OA\Property(property="success", type="boolean", example=true),
      *             @OA\Property(property="message", type="string", example="Book deleted successfully"),
-     *             @OA\Property(property="data", type="null")
+     *             @OA\Property(property="errors", type="object", nullable=true),
      *         )
      *     ),
      *      @OA\Response(
