@@ -1760,12 +1760,18 @@
                         "type": "string",
                         "example": "Genre Description"
                     },
-                    "Genre_id": {
+                    "genre_id": {
                         "type": "integer",
                         "example": 1
                     },
-                    "Category": {
+                    "category": {
                         "$ref": "#/components/schemas/Category"
+                    },
+                    "books": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Book"
+                        }
                     }
                 },
                 "type": "object"

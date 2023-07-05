@@ -14,11 +14,16 @@ use Illuminate\Http\Request;
  *     @OA\Property(property="id", type="integer", example=1),
  *     @OA\Property(property="name", type="string", example="Genre Name"),
  *     @OA\Property(property="description", type="string", example="Genre Description"),
- *     @OA\Property(property="Genre_id", type="integer", example=1),
+ *     @OA\Property(property="genre_id", type="integer", example=1),
  *     @OA\Property(
- *         property="Category",
+ *         property="category",
  *         ref="#/components/schemas/Category"
- *     )
+ *     ),
+ *     @OA\Property(
+ *         property="books",
+ *         type="array",
+ *              @OA\Items(ref="#/components/schemas/Book")
+ *         ),
  * )
  *
  */
@@ -59,7 +64,7 @@ class GenreController extends Controller
     public function index()
     {
         try {
-            $genres = Genre::all();
+            $genres = Genre::with(['category', 'books'])->get();
 
             return response()->json([
                 'success' => true,
@@ -74,7 +79,7 @@ class GenreController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
-        $genres = Genre::all();
+        $genres = Genre::with(['category', 'books'])->get();
 
         return response()->json([
             'success' => true,
