@@ -12,6 +12,4 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = ['name', 'description'];
-
-    // Define relationships or any additional methods for the Category model
 }
