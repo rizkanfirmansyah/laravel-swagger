@@ -277,10 +277,40 @@ class CategoryController extends Controller
      *         required=true,
      *         @OA\Schema(type="integer", format="int64")
      *     ),
-     *     @OA\Response(response=204, description="Category deleted"),
-     *     @OA\Response(response=404, description="Category not found")
+     *     @OA\Response(
+     *         response=200,
+     *         description="Category deleted",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Category has been deleted"),
+     *             @OA\Property(property="data", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Category not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Category not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Internal server error"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
+
+
     public function destroy($id)
     {
         try {
