@@ -306,7 +306,26 @@ class BookController extends Controller
      *             @OA\Property(property="data", type="object", nullable=true)
      *         )
      *     ),
-     *     @OA\Response(response=404, description="Book not found")
+     *     @OA\Response(
+     *         response=404,
+     *         description="Book not found",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Book not found"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Unprocessable Entity",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     )
      * )
      */
     public function destroy($id)
