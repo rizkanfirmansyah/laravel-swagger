@@ -112,7 +112,15 @@ class BookController extends Controller
      *              )
      *          )
      *     ),
-     *     @OA\Response(response=404, description="Book not found")
+     *     @OA\Response(
+     *          response="404",
+     *          description="Book not found",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Book not found"),
+     *              @OA\Property(property="data", type="string", nullable=true, example=null),
+     *          )
+     *      ),
      * )
      */
 
