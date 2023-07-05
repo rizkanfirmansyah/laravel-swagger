@@ -104,7 +104,16 @@ class GenreController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Genre")
      *         )
      *     ),
-     *       @OA\Response(
+     *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
+     *         )
+     *     ),
+     *      @OA\Response(
      *          response="422",
      *          description="Unprocessable Entity",
      *          @OA\JsonContent(
@@ -211,6 +220,15 @@ class GenreController extends Controller
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/GenreRequest")
      *     ),
+     *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Genre updated successfully",
@@ -298,6 +316,15 @@ class GenreController extends Controller
      *             @OA\Property(property="success", type="boolean", example=false),
      *             @OA\Property(property="message", type="string", example="Genre not found"),
      *             @OA\Property(property="errors", type="object", nullable=true),
+     *         )
+     *     ),
+     *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
      *         )
      *     ),
      *     @OA\Response(
