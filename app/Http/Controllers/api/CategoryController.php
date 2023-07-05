@@ -151,6 +151,15 @@ class CategoryController extends Controller
      *         )
      *     ),
      *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
+     *         )
+     *     ),
+     *      @OA\Response(
      *          response="422",
      *          description="Unprocessable Entity",
      *          @OA\JsonContent(
@@ -217,6 +226,15 @@ class CategoryController extends Controller
      *             )
      *         )
      *     ),
+     *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=404,
      *         description="Category not found",
@@ -276,6 +294,15 @@ class CategoryController extends Controller
      *         description="Category ID",
      *         required=true,
      *         @OA\Schema(type="integer", format="int64")
+     *     ),
+     *      @OA\Response(
+     *         response="403",
+     *         description="Forbidden/Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Forbidden/Unauthorized"),
+     *             @OA\Property(property="data", type="object", nullable=true)
+     *         )
      *     ),
      *     @OA\Response(
      *         response=200,
