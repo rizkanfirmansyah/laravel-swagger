@@ -172,7 +172,16 @@ class BookController extends Controller
      *             @OA\Property(property="data", ref="#/components/schemas/Book")
      *         )
      *     ),
-     *     @OA\Response(response=422, description="Unprocessable Entity")
+     *     @OA\Response(
+     *          response="422",
+     *          description="Unprocessable Entity",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="success", type="boolean", example=false),
+     *              @OA\Property(property="message", type="string", example="Unprocessable Entity"),
+     *              @OA\Property(property="data", type="object", nullable=true),
+     *              @OA\Property(property="errors", type="object", nullable=true),
+     *          )
+     *      )
      * )
      *
      */
