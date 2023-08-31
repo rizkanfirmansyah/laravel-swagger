@@ -202,4 +202,13 @@ class AuthController extends Controller
             ], 400);
         }
     }
+
+    public function badrequest()
+    {
+        return response()->json([
+            'success' => false,
+            'message' => 'Unauthorized',
+            'data' => null
+        ], 401);
+    }
 }

@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/greet', 'UserController@greet');
 
+Route::post('/error/403', [AuthController::class, 'badrequest'])->name('badrequest');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
