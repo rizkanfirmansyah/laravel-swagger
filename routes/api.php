@@ -24,24 +24,28 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/greet', 'UserController@greet');
 
-Route::post('/error/403', [AuthController::class, 'badrequest'])->name('badrequest');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
+Route::group(function () {
 
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{id}', [CategoryController::class, 'show']);
-Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth:sanctum');
-Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::post('/error/403', [AuthController::class, 'badrequest'])->name('badrequest');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/genres', [GenreController::class, 'index']);
-Route::get('/genres/{id}', [GenreController::class, 'show']);
-Route::post('/genres', [GenreController::class, 'store'])->middleware('auth:sanctum');
-Route::put('/genres/{id}', [GenreController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/genres/{id}', [GenreController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/categories/{id}', [CategoryController::class, 'show']);
+    Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth:sanctum');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])->middleware('auth:sanctum');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::get('/books', [BookController::class, 'index']);
-Route::get('/books/{id}', [BookController::class, 'show']);
-Route::post('/books', [BookController::class, 'store'])->middleware('auth:sanctum');
-Route::put('/books/{id}', [BookController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('auth:sanctum');
+    Route::get('/genres', [GenreController::class, 'index']);
+    Route::get('/genres/{id}', [GenreController::class, 'show']);
+    Route::post('/genres', [GenreController::class, 'store'])->middleware('auth:sanctum');
+    Route::put('/genres/{id}', [GenreController::class, 'update'])->middleware('auth:sanctum');
+    Route::delete('/genres/{id}', [GenreController::class, 'destroy'])->middleware('auth:sanctum');
+
+    Route::get('/books', [BookController::class, 'index']);
+    Route::get('/books/{id}', [BookController::class, 'show']);
+    Route::post('/books', [BookController::class, 'store'])->middleware('auth:sanctum');
+    Route::put('/books/{id}', [BookController::class, 'update'])->middleware('auth:sanctum');
+    Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('auth:sanctum');
+})->withoutMiddleware("throttle:api")
+    ->middleware("throttle:1000:1");
