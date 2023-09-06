@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/greet', 'UserController@greet');
 
-Route::group(function () {
+Route::withoutMiddleware('throttle:api')->middleware('throttle:1000:1')->group(function () {
 
     Route::post('/error/403', [AuthController::class, 'badrequest'])->name('badrequest');
     Route::post('/login', [AuthController::class, 'login']);
@@ -47,5 +47,4 @@ Route::group(function () {
     Route::post('/books', [BookController::class, 'store'])->middleware('auth:sanctum');
     Route::put('/books/{id}', [BookController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware('auth:sanctum');
-})->withoutMiddleware("throttle:api")
-    ->middleware("throttle:1000:1");
+});
